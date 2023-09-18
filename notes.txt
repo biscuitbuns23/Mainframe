@@ -1,0 +1,5 @@
+pinkish color #f5e1eb
+orangish color #f28150
+greenish color #145e13
+
+orangish 2 #f59c76

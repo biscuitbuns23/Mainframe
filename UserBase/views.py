@@ -9,9 +9,11 @@ from django.views.generic import (
     CreateView, ListView, DetailView, TemplateView, UpdateView,
     DeleteView)
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.mixins import LoginRequiredMixin
 #from agents.mixins import OrganizerAndLoginRequiredMixin
 from .forms import CustomUserCreationForm
+from django.urls.base import reverse_lazy
 
 class LandingView(TemplateView):
     template_name = "landing.html"
@@ -22,3 +24,7 @@ class SignupView(CreateView):
 
     def get_success_url(self):
         return reverse("login")
+    
+class PasswordResetViewCustom(PasswordResetView):
+        success_url = reverse_lazy("PasswordResetDoneView")
+

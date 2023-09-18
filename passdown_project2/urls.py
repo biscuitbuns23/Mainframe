@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from UserBase.views import LandingView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', LandingView.as_view(), name='landingview'),
-    path('user/', include('UserBase.urls', namespace='user'))
+    path('user/', include('UserBase.urls', namespace='user')),
+    path('', include('django.contrib.auth.urls')),
 ]

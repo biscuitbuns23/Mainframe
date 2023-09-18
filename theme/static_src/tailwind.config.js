@@ -42,7 +42,15 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'wsppink': '#f5e1eb',
+                'wsporange': '#f28150',
+                'wsporange2': '#f59c76',
+                'wsporange3': '#f0b8a1',
+                'wspgreen': '#145e13',
+            }
+        },
     },
     plugins: [
         /**
