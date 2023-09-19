@@ -24,5 +24,6 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('', LandingView.as_view(), name='landingview'),
     path('user/', include('UserBase.urls', namespace='user')),
+    path('passdown/', include('passdown.urls', namespace='passdown')),
     path('', include('django.contrib.auth.urls')),
 ]

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'UserBase',
+    'passdown',
+    'polls',
 
     # Third part apps
     'tailwind',
@@ -45,8 +47,6 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'crispy_forms',
     'crispy_tailwind',
-    'schedule',
-    'djangobower',
 ]
 
 MIDDLEWARE = [
@@ -73,9 +73,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                # Third part context processors
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -155,19 +152,3 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
 LOGIN_URL = "http://127.0.0.1:8000/user/login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-STATICFILES_FINDERS = [
-    'djangobower.finders.BowerFinder',
-]
-
-BOWER_COMPONENTS_ROOT = 'passdown_project2/components/'
-
-BOWER_INSTALLED_APPS = [
-    'jquery',
-    'jquery-ui',
-    'bootstrap'
-]
-
-TEMPLATE_CONTEXT_PROCESSORS = [
-    'django.template.context_processors.request'
-]

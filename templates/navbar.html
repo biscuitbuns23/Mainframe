@@ -18,10 +18,14 @@
       <!-- SIGNUP BUTTON VISIBLE IF NOT LOGGED IN -->
       {% if not request.user.is_authenticated %}
       <a href="{% url 'UserBase:signup' %}" class="mr-5 hover:text-gray-900">Signup</a>
+      {% else %}
+      <a class="px-5 text-gray-600 hover:text-gray-900">Welcome {{ request.user.username }}</a>
       {% endif %}
+      <!--
       <a class="mr-5 hover:text-gray-900">Second Link</a>
       <a class="mr-5 hover:text-gray-900">Third Link</a>
       <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+      -->
     </nav>
 
     <!-- LOGIN BUTTON VISIBLE IF NOT LOGGED IN -->

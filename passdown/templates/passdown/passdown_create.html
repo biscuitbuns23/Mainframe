@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+    <a href="{% url 'landingview' %}">Go back</a>
+    <h1>Create passdown</h1>
+    <div>
+        <form class="justify-center py-5 w-3/5" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock content %}
+
