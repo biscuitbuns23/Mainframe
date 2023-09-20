@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+
 <div class="flex w-screen h-screen text-gray-700">
 
 	<!-- Component Start -->
@@ -10,7 +11,7 @@
                 <a class="flex items-center justify-center flex-shrink-0 w-full h-16" href="#">
                     <img class="w-10 h-10" src="{% static 'passdown/blackiconnobg.png' %}" alt="coloricon">
                 </a>
-                <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300 hover:text-gray-900" href="#">
+                <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:dashboard' %}">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
@@ -58,11 +59,11 @@
                     </div>
                 </button>
                 <div class="flex flex-col flex-grow p-4 overflow-auto">
-                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:entry-list' %}">
+                    <a href="{% url 'passdown:entry-list' %}" class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300 hover:text-gray-900" href="#">
                         <span class="leading-none">Entry List</span>
                     </a>
                     <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:passdownlist' %}">
-                        <span class="leading-none">Passdown List</span>
+                        <span class="leading-none">Pass down List</span>
                     </a>
                     <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300 hover:text-gray-900" href="#">
                         <span class="leading-none">Item 3</span>
@@ -88,7 +89,7 @@
             </div>
             <div class="flex flex-col flex-grow">
                 <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
-                    <h1 class="text-lg font-medium">Dashboard</h1>
+                    <h1 class="text-lg font-medium">{{ parent_passdown }}</h1>
                     <button class="flex items-center justify-center h-10 px-4 ml-auto text-sm font-medium rounded hover:bg-gray-300 hover:text-gray-900">
                         Action 1
                     </button>
@@ -109,15 +110,36 @@
                     </button>
                 </div>
                 <div class="flex-grow p-6 overflow-auto">
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="h-24 col-span-3 text-black text-lg text-bold bg-gray-400 rounded p-4 border border-black overflow-auto">Pass down for {{ parent_passdown.shift }}, {{ parent_passdown.date_time }}
-                            <br>Notes: {{ parent_passdown.notes }}
-                        </div>
+                    <div class="grid grid-cols-3 gap-6">
                         {% for entry in individual_entries %}
-                        <div class="h-24 p-6 col-span-3 text-lg text-gray-900 bg-gray-300">{{ entry.modex }}
-                            <br>{{ entry.text_body }}
+                        <div class="h-24 col-span-3 bg-gray-300">
+                            <a href="#">{{ entry }}</a>
+                            <br> {{ entry.text_body }}
                         </div>
                         {% endfor %}
+                        <div class="h-24 col-span-3 bg-gray-300"></div>
+                        <div class="h-24 col-span-3 bg-gray-300"></div>
+                        <div class="h-24 col-span-2 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-2 bg-gray-300"></div>
+                        <div class="h-24 col-span-3 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-2 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-2 bg-gray-300"></div>
+                        <div class="h-24 col-span-3 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-2 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-1 bg-gray-300"></div>
+                        <div class="h-24 col-span-2 bg-gray-300"></div>
+                        <div class="h-24 col-span-3 bg-gray-300"></div>
                     </div>
                 </div>
             </div>

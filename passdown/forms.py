@@ -1,5 +1,6 @@
 from django import forms
 from .models import PassDown, Entry
+from django.forms import ModelChoiceField
 
 class PassDownForm(forms.ModelForm):
 	class Meta:
@@ -12,4 +13,9 @@ class PassDownForm(forms.ModelForm):
 class EntryForm(forms.ModelForm):
 	class Meta:
 		model = Entry
-		fields = "__all__"
+		fields = (
+			'modex',
+			'discrepancy',
+			'text_body',
+			'passdown'
+		)

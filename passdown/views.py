@@ -1,3 +1,4 @@
+from django.db import models
 from django.shortcuts import render
 from typing import Any, Dict
 from django.db.models.query import QuerySet
@@ -13,9 +14,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class EntryCreateView(LoginRequiredMixin, CreateView):
     template_name = "passdown/entry_create.html"
     form_class = EntryForm
+    context_object_name = 'passdown'
+
+    def get_queryset(self):
+        queryset = PassDown.objects.last()
+        return queryset
 
     def get_success_url(self):
         return reverse("passdown:entry-create")
+
 
 class PassDownCreateView(LoginRequiredMixin, CreateView):
     template_name = "passdown/passdown_create.html"
@@ -30,14 +37,14 @@ class PassDownCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse("passdown:entry-create")
 
+
 class EntryByPassdown(LoginRequiredMixin, ListView):
     template_name = "passdown/entry_by_passdown.html"
     context_object_name = "entries"
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['queryset1'] = Entry.objects.filter(passdown_id=1)
-        context_data['queryset2'] = PassDown.objects.filter(id=1)
+        context_data['queryset1'] = Entry.objects.filter(passdown_id=kwargs)
         return context_data
 
     def get_queryset(self):
@@ -46,6 +53,39 @@ class EntryByPassdown(LoginRequiredMixin, ListView):
             "queryset2": PassDown.objects.filter(id=1)
         }
         return myset
+    
+
+class PassDownListView(LoginRequiredMixin, ListView):
+    template_name = "passdown/passdown_list.html"
+    context_object_name = "entries"
+
+    # def get_context_data(self, **kwargs):
+    #     context_data = super(QueryTest, self).get_context_data(**kwargs)
+    #     return context_data
+
+    def get_queryset(self):
+        queryset = PassDown.objects.all()
+        return queryset
+    
+
+class PassDownDetailView(LoginRequiredMixin, ListView):
+    template_name = "passdown/passdown_detail_test.html"
+    context_object_name = "entries"
+
+    def get_queryset(self):
+        queryset = PassDown.objects.all()
+        return queryset
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(PassDownDetailView, self).get_context_data(**kwargs)
+        pd = PassDown.objects.get(pk=self.kwargs['pk'])
+        queryset2 = pd.entry_set.all()
+        context.update({
+            "individual_entries": queryset2,
+            "parent_passdown": pd,
+        })
+        return context
+
 
 class EntryListView(LoginRequiredMixin, ListView):
     template_name = "passdown/entry_list.html"
@@ -55,5 +95,21 @@ class EntryListView(LoginRequiredMixin, ListView):
         QuerySet = Entry.objects.all()
         return QuerySet
 
-class DashboardView(TemplateView):
+
+class DashboardView(ListView):
     template_name = 'passdown/dashboard.html'
+    context_object_name = 'entries'
+
+    def get_queryset(self):
+        queryset = PassDown.objects.last()
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        pd = PassDown.objects.latest('id')
+        queryset2 = pd.entry_set.all().order_by('modex')
+        context.update({
+            "individual_entries": queryset2,
+            "parent_passdown": pd,
+        })
+        return context
