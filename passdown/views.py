@@ -113,3 +113,51 @@ class DashboardView(ListView):
             "parent_passdown": pd,
         })
         return context
+    
+class MasterListView(ListView):
+    template_name = 'passdown/master_list.html'
+    context_object_name = 'entries'
+
+    def nested_query_loop(self):
+        object_list = []
+        all_objects = PassDown.objects.all() #queryset containing all passdown objects
+        for object in all_objects:
+            object_list.append(object.pk) #list containing all passdown primary keys (object_list)
+
+        query_dict={}
+        for i in object_list:
+            temp_obj = PassDown.objects.get(pk=i) #ith passdown object itself
+            sub_object_pk_list=[]
+            all_i_entries = temp_obj.entry_set.all() #queryset containing all entry objects of i
+            for j in all_i_entries:
+                sub_object_pk_list.append(j.pk) #list containing all entry primary keys of i (sub_object_pk_list)
+                
+            sub_object_list = []
+            for k in sub_object_pk_list:
+                sub_object_list.append(all_i_entries.get(pk=k)) #list containing all ith entry objects (sub_object_list)
+            query_dict.__setitem__(temp_obj, sub_object_list)
+
+        return query_dict
+
+    def get_queryset(self):
+        queryset = PassDown.objects.all()
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(MasterListView, self).get_context_data(**kwargs)
+        queryset = self.nested_query_loop()
+        context.update({
+            "parent_child_dict": queryset
+        })
+        return context
+    
+class MasterListView2(ListView):
+    template_name = 'passdown/master_list2.html'
+    model = PassDown
+    paginate_by = 5
+    context_object_name = 'entries'
+
+
+    def get_queryset(self):
+        queryset = PassDown.objects.all().order_by('-date_time')
+        return queryset
