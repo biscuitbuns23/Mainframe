@@ -64,7 +64,7 @@ class PassDownListView(LoginRequiredMixin, ListView):
     #     return context_data
 
     def get_queryset(self):
-        queryset = PassDown.objects.all()
+        queryset = PassDown.objects.all().order_by("date_time")
         return queryset
     
 
@@ -159,5 +159,6 @@ class MasterListView2(ListView):
 
 
     def get_queryset(self):
-        queryset = PassDown.objects.all().order_by('-date_time')
+        queryset = PassDown.objects.all().order_by("-date_time")
+        # .order_by('-date_time')
         return queryset

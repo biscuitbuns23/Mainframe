@@ -8,7 +8,7 @@ class PassDown(models.Model):
                  ("Mids", "Mids")]
     shift = models.CharField(max_length=10, choices=shiftList)
     date_time = models.DateTimeField(default=timezone.now)
-    notes = models.TextField()
+    notes = models.TextField(help_text="This section is for general notes. A/C entries are on the next page.")
     entered_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     #entry = models.ForeignKey(Entry, on_delete=models.DO_NOTHING)
 

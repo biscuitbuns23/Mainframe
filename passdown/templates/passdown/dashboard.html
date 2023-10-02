@@ -3,6 +3,10 @@
 {% load static %}
 
 {% block content %}
+<head>
+    <script src="{% static 'passdown/dropdown.js' %}"></script>
+</head>
+
 <div class="flex w-screen h-screen text-gray-700">
 
 	<!-- Component Start -->
@@ -42,7 +46,7 @@
                 </a>
             </div>
             <div class="flex flex-col w-56 border-r border-gray-800">
-                <button class="relative text-sm focus:outline-none group">
+                <button onclick="myfunction()" class="relative text-sm focus:outline-none group">
                     <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800 hover:bg-gray-300 hover:text-gray-900">
                         <span class="font-medium">
                             Dropdown

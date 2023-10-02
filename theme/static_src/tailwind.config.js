@@ -49,6 +49,13 @@ module.exports = {
                 'wsporange2': '#f59c76',
                 'wsporange3': '#f0b8a1',
                 'wspgreen': '#145e13',
+            },
+            backgroundImage: {
+                'kairoslogo': "url('blackiconnobg.png')"
+            },
+            screens: {
+                'xs': '475px',
+                'iphonese': '300px'
             }
         },
     },
