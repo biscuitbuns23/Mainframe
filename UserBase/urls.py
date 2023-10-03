@@ -1,11 +1,10 @@
-from django.contrib import admin
 from django.urls import path
-from .views import SignupView, PasswordResetViewCustom
+from .views import SignupView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordResetView,
-    PasswordChangeDoneView, PasswordResetDoneView,
-    PasswordResetConfirmView, PasswordResetCompleteView)
+    PasswordResetDoneView, PasswordResetConfirmView,
+    PasswordResetCompleteView)
 
 
 app_name = "UserBase"
