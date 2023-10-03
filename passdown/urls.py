@@ -3,7 +3,7 @@ from django.urls import path
 from .views import(
     PassDownCreateView, EntryCreateView, EntryListView, EntryByPassdown,
     DashboardView, PassDownListView, PassDownDetailView, MasterListView,
-    MasterListView2
+    MasterListView2, SearchView, SearchResultsView, SearchTestView
     )
 
 app_name = "passdown"
@@ -17,5 +17,11 @@ urlpatterns = [
     path('masterlistboard', MasterListView2.as_view(), name='master-list'),
     path('passdownlist', PassDownListView.as_view(), name='passdownlist'),
     path('<int:pk>/', PassDownDetailView.as_view(), name='passdowndetail'),
+    path('passdownsearchresults', SearchResultsView.as_view(), name='search-results'),
+    path('passdownsearch', SearchView.as_view(), name='search'),
+    path('passdownsearchtest', SearchTestView.as_view(), name='search-test'),
+
+
+
 
 ]

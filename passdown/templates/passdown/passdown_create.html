@@ -17,41 +17,55 @@
             </button>
     
             <!-- TEXT MENU LIST -->
-            <div class="md:flex md:flex-grow md:p-4">
-                <a class="flex items-center justify-center flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:master-list' %}">
+            <div class="md:flex md:flex-col md:flex-grow md:p-4">
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:master-list' %}">
                     <span class="leading-none">Pass Down List</span>
                 </a>
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded text-gray-900 bg-gray-300 border border-black" href="{% url 'passdown:passdown-create' %}">
+                    <span class="leading-none">Create Pass Down</span>
+                </a>
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:search' %}">
+                    <span class="leading-none">Search</span>
+                </a>
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:entry-create' %}">
+                    <span class="leading-none">Add entries to existing pass down</span>
+                </a>
             </div>
-    
+        
         </div>
     
         <!-- LARGE RH COLUMN -->
         <div class="flex flex-col flex-grow">
     
             <!-- TOP ROW: DASHBOARD/MENU BUTTONS -->
-            <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
-                <h1 class="text-lg font-medium">Create Pass Down</h1>
+            <div class="flex items-center justify-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
+                <h1 class=" text-lg font-medium">Create Pass Down</h1>
+            </div>
+    
+            <!-- TOP ROW: BUTTONs VISIBLE UP TO MEDIUM SCREEN SIZE, THEN HIDDEN -->
+            <div class="flex flex-wrap md:hidden justify-center border border-b-black">
                 <a href="{% url 'passdown:master-list' %}">
-                    <button class="xs:flex md:hidden items-center justify-center h-10 px-4 ml-5 text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                    <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
                         Pass Down List
                     </button>
                 </a>
-                <!--
-                <button class="relative ml-2 text-sm focus:outline-none group">
-                    <div class="flex items-center justify-between w-10 h-10 rounded hover:bg-gray-300">
-                        <svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                        </svg>
-                    </div>
-                    <div class="absolute right-0 flex-col items-start hidden w-40 mt-1 pb-1 bg-gray-800 border border-gray-800 shadow-lg group-focus:flex">
-                        <a class="w-full px-4 py-2 text-left hover:bg-gray-900" href="#">Menu Item 1</a>
-                        <a class="w-full px-4 py-2 text-left hover:bg-gray-900" href="#">Menu Item 2</a>
-                        <a class="w-full px-4 py-2 text-left hover:bg-gray-900" href="#">Menu Item 3</a>
-                    </div>
-                </button>
-                -->
+                <a href="{% url 'passdown:passdown-create' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 mx-2 rounded text-gray-900 bg-gray-300 border border-black">
+                        Create Pass Down
+                    </button>
+                </a>
+                <a href="{% url 'passdown:search' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                        Search
+                    </button>
+                </a>
+                <a href="{% url 'passdown:entry-create' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                        Add entries to existing pass down
+                    </button>
+                </a>
             </div>
-    
+
             <!-- LIST SECTION -->
             <div class="flex flex-col flex-grow p-6 bg-gray-300 overflow-auto">
                 <div class="grid grid-cols-3 gap-2">
@@ -61,7 +75,7 @@
                                 <form class="m-5" method="post">
                                     {% csrf_token %}
                                     {{ form|crispy }}
-                                    <button type="submit">Create Entries</button>
+                                    <button type="submit">Next</button>
                                 </form>
                             </div>
                         </div>

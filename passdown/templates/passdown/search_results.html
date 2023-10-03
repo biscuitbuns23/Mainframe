@@ -19,7 +19,7 @@
 
         <!-- TEXT MENU LIST -->
         <div class="md:flex md:flex-col md:flex-grow md:p-4">
-            <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded text-gray-900 bg-gray-300 border border-black" href="{% url 'passdown:master-list' %}">
+            <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:master-list' %}">
                 <span class="leading-none">Pass Down List</span>
             </a>
             <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:passdown-create' %}">
@@ -37,13 +37,13 @@
 
         <!-- TOP ROW: DASHBOARD/MENU BUTTONS -->
         <div class="flex items-center justify-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
-            <h1 class=" text-lg font-medium">Pass Down List</h1>
+            <h1 class=" text-lg font-medium">Search Results</h1>
         </div>
 
         <!-- TOP ROW: BUTTONs VISIBLE UP TO MEDIUM SCREEN SIZE, THEN HIDDEN -->
         <div class="flex flex-wrap md:hidden justify-center border border-b-black">
             <a href="{% url 'passdown:master-list' %}">
-                <button class="h-10 text-sm font-medium px-2 my-2 rounded text-gray-900 bg-gray-300 border border-black">
+                <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
                     Pass Down List
                 </button>
             </a>

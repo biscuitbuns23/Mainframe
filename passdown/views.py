@@ -7,8 +7,9 @@ from .forms import PassDownForm, EntryForm
 from django.urls import reverse
 from django.views.generic import (
     CreateView, ListView, DetailView, TemplateView, UpdateView,
-    DeleteView)
+    DeleteView, FormView)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 class EntryCreateView(LoginRequiredMixin, CreateView):
@@ -96,7 +97,7 @@ class EntryListView(LoginRequiredMixin, ListView):
         return QuerySet
 
 
-class DashboardView(ListView):
+class DashboardView(LoginRequiredMixin, ListView):
     template_name = 'passdown/dashboard.html'
     context_object_name = 'entries'
 
@@ -114,7 +115,7 @@ class DashboardView(ListView):
         })
         return context
     
-class MasterListView(ListView):
+class MasterListView(LoginRequiredMixin, ListView):
     template_name = 'passdown/master_list.html'
     context_object_name = 'entries'
 
@@ -151,7 +152,7 @@ class MasterListView(ListView):
         })
         return context
     
-class MasterListView2(ListView):
+class MasterListView2(LoginRequiredMixin, ListView):
     template_name = 'passdown/master_list2.html'
     model = PassDown
     paginate_by = 5
@@ -160,5 +161,35 @@ class MasterListView2(ListView):
 
     def get_queryset(self):
         queryset = PassDown.objects.all().order_by("-date_time")
-        # .order_by('-date_time')
         return queryset
+    
+class SearchResultsView(LoginRequiredMixin, ListView):
+    template_name = 'passdown/search_results.html'
+    model = PassDown
+    paginate_by = 5
+    context_object_name = 'entries'
+    form_class = EntryForm
+
+    def get_queryset(self):
+        modex = self.request.GET.get('modex')
+        shift = self.request.GET.get('shift')
+        keyword = self.request.GET.get('keyword')
+        job_status = self.request.GET.get('jobstatus')
+        #cdi = self.request.GET.get('cdi')
+        discrepancy = self.request.GET.get('discrepancy')
+        queryset = PassDown.objects.filter(
+            Q(entry__modex__icontains=modex),
+            Q(shift__icontains=shift),
+            Q(entry__text_body__icontains=keyword),
+            #Q(entry__job_status__icontains=job_status),
+            #Q(entry__cdi__icontains=cdi),
+            Q(entry__discrepancy__icontains=discrepancy)
+            )
+        return queryset
+
+class SearchView(LoginRequiredMixin, TemplateView):
+    template_name = 'passdown/search.html'
+
+class SearchTestView(LoginRequiredMixin, FormView):
+    template_name = 'passdown/search_test.html'
+    form_class = EntryForm

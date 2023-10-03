@@ -17,5 +17,7 @@ class EntryForm(forms.ModelForm):
 			'modex',
 			'discrepancy',
 			'text_body',
-			'passdown'
+			'passdown',
+			'job_status',
+			'cdi',
 		)
