@@ -18,3 +18,5 @@ class SignupView(CreateView):
 class PasswordResetViewCustom(PasswordResetView):
         success_url = reverse_lazy("PasswordResetDoneView")
 
+class AccountView(TemplateView):
+     template_name = "UserBase/account.html"

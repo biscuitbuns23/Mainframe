@@ -40,3 +40,15 @@ class Entry(models.Model):
 
     def __str__(self):
         return f"{self.modex} {self.discrepancy} {self.passdown.date_time}"
+    
+    
+class Organization(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"{self.name}"
+    
+
+class WorkCenter(models.Model):
+    name = models.CharField(max_length=20)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
