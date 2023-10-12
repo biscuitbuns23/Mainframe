@@ -3,7 +3,7 @@ from django.urls import path
 from .views import(
     PassDownCreateView, EntryCreateView, EntryListView, EntryByPassdown,
     DashboardView, PassDownListView, PassDownDetailView, MasterListView,
-    MasterListView2, SearchView, SearchResultsView, SearchTestView
+    MasterListView2, SearchView, SearchResultsView, SearchTestView, AdminDashboardView
     )
 
 app_name = "passdown"
@@ -20,8 +20,5 @@ urlpatterns = [
     path('passdownsearchresults', SearchResultsView.as_view(), name='search-results'),
     path('passdownsearch', SearchView.as_view(), name='search'),
     path('passdownsearchtest', SearchTestView.as_view(), name='search-test'),
-
-
-
-
+    path('admindashboard', AdminDashboardView.as_view(), name='admin-dashboard'),
 ]

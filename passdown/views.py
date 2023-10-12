@@ -3,6 +3,7 @@ from django.shortcuts import render
 from typing import Any, Dict
 from django.db.models.query import QuerySet
 from .models import Entry, PassDown
+from UserBase.models import WorkCenter
 from .forms import PassDownForm, EntryForm
 from django.urls import reverse
 from django.views.generic import (
@@ -193,3 +194,8 @@ class SearchView(LoginRequiredMixin, TemplateView):
 class SearchTestView(LoginRequiredMixin, FormView):
     template_name = 'passdown/search_test.html'
     form_class = EntryForm
+
+class AdminDashboardView(LoginRequiredMixin, ListView):
+     template_name = 'passdown/admin_dashboard.html'
+     model = WorkCenter
+     context_object_name = 'workcenter'
