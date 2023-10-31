@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from .views import(
-    PassDownCreateView, EntryCreateView,
-    DashboardView, PassDownListView, PassDownDetailView, MasterListView,
+    PassDownCreateView, EntryCreateView, PassDownListView, PassDownDetailView, MasterListView,
     MasterListView2, SearchView, SearchResultsView, SearchTestView, AdminDashboardView,
     SearchResultsEntryView, NoPermissionView
     )
@@ -13,7 +12,6 @@ urlpatterns = [
     path('', PassDownCreateView.as_view(), name='passdown-create'),
     path('createentry', EntryCreateView.as_view(), name='entry-create'),
 
-    path('passdowndashboard', DashboardView.as_view(), name='dashboard'),
     path('masterlistboard', MasterListView2.as_view(), name='master-list'),
     path('passdownlist', PassDownListView.as_view(), name='passdownlist'),
     path('<int:pk>/', PassDownDetailView.as_view(), name='passdowndetail'),

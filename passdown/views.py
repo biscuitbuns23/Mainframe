@@ -71,25 +71,6 @@ class PassDownDetailView(LoginRequiredMixin, ListView):
             "parent_passdown": pd,
         })
         return context
-
-
-class DashboardView(LoginRequiredMixin, ListView):
-    template_name = 'passdown/dashboard.html'
-    context_object_name = 'entries'
-
-    def get_queryset(self):
-        queryset = PassDown.objects.last()
-        return queryset
-    
-    def get_context_data(self, **kwargs):
-        context = super(DashboardView, self).get_context_data(**kwargs)
-        pd = PassDown.objects.latest('id')
-        queryset2 = pd.entry_set.all().order_by('modex')
-        context.update({
-            "individual_entries": queryset2,
-            "parent_passdown": pd,
-        })
-        return context
     
 class MasterListView(LoginRequiredMixin, ListView):
     template_name = 'passdown/master_list.html'
