@@ -39,23 +39,6 @@ class PassDownCreateView(LoginRequiredMixin, CreateView):
     
     def get_success_url(self):
         return reverse("passdown:entry-create")
-
-
-class EntryByPassdown(LoginRequiredMixin, ListView):
-    template_name = "passdown/entry_by_passdown.html"
-    context_object_name = "entries"
-
-    def get_context_data(self, **kwargs):
-        context_data = super().get_context_data(**kwargs)
-        context_data['queryset1'] = Entry.objects.filter(passdown_id=kwargs)
-        return context_data
-
-    def get_queryset(self):
-        myset = {
-            "queryset1": Entry.objects.filter(passdown_id=1),
-            "queryset2": PassDown.objects.filter(id=1)
-        }
-        return myset
     
 
 class PassDownListView(LoginRequiredMixin, ListView):
