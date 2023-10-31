@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from .views import(
-    PassDownCreateView, EntryCreateView, MasterListView,
+    PassDownCreateView, EntryCreateView,
     MasterListView2, SearchView, SearchResultsView, AdminDashboardView,
     SearchResultsEntryView, NoPermissionView
     )
