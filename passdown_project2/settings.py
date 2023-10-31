@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'UserBase',
     'passdown',
-    'polls',
 
     # Third part apps
     'tailwind',

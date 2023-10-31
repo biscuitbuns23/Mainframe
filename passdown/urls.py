@@ -4,7 +4,7 @@ from .views import(
     PassDownCreateView, EntryCreateView, EntryListView, EntryByPassdown,
     DashboardView, PassDownListView, PassDownDetailView, MasterListView,
     MasterListView2, SearchView, SearchResultsView, SearchTestView, AdminDashboardView,
-    SearchResultsEntryView
+    SearchResultsEntryView, NoPermissionView
     )
 
 app_name = "passdown"
@@ -23,4 +23,5 @@ urlpatterns = [
     path('passdownsearch', SearchView.as_view(), name='search'),
     path('passdownsearchtest', SearchTestView.as_view(), name='search-test'),
     path('admindashboard', AdminDashboardView.as_view(), name='admin-dashboard'),
+    path('notauthorized', NoPermissionView.as_view(), name='not-authorized'),
 ]

@@ -226,3 +226,6 @@ class AdminDashboardView(LoginRequiredMixin, ListView):
      template_name = 'passdown/admin_dashboard.html'
      model = WorkCenter
      context_object_name = 'workcenter'
+
+class NoPermissionView(TemplateView):
+    template_name = 'passdown/no_permission.html'

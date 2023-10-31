@@ -25,6 +25,5 @@ urlpatterns = [
     path('', LandingView.as_view(), name='landingview'),
     path('user/', include('UserBase.urls', namespace='user')),
     path('passdown/', include('passdown.urls', namespace='passdown')),
-    path('polls/', include('polls.urls', namespace='polls')),
     path('', include('django.contrib.auth.urls')),
 ]
