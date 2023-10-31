@@ -11,6 +11,7 @@ from django.views.generic import (
     DeleteView, FormView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from .mixins import AdministratorAndLoginRequiredMixin
 
 
 class EntryCreateView(LoginRequiredMixin, CreateView):
@@ -87,15 +88,6 @@ class PassDownDetailView(LoginRequiredMixin, ListView):
             "parent_passdown": pd,
         })
         return context
-
-
-class EntryListView(LoginRequiredMixin, ListView):
-    template_name = "passdown/entry_list.html"
-    context_object_name = "entries"
-
-    def get_queryset(self):
-        QuerySet = Entry.objects.all()
-        return QuerySet
 
 
 class DashboardView(LoginRequiredMixin, ListView):
@@ -222,7 +214,7 @@ class SearchTestView(LoginRequiredMixin, FormView):
     template_name = 'passdown/search_test.html'
     form_class = EntryForm
 
-class AdminDashboardView(LoginRequiredMixin, ListView):
+class AdminDashboardView(AdministratorAndLoginRequiredMixin, ListView):
      template_name = 'passdown/admin_dashboard.html'
      model = WorkCenter
      context_object_name = 'workcenter'
