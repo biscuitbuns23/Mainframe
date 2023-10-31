@@ -41,19 +41,6 @@ class PassDownCreateView(LoginRequiredMixin, CreateView):
         return reverse("passdown:entry-create")
     
 
-class PassDownListView(LoginRequiredMixin, ListView):
-    template_name = "passdown/passdown_list.html"
-    context_object_name = "entries"
-
-    # def get_context_data(self, **kwargs):
-    #     context_data = super(QueryTest, self).get_context_data(**kwargs)
-    #     return context_data
-
-    def get_queryset(self):
-        queryset = PassDown.objects.all().order_by("date_time")
-        return queryset
-    
-
 class PassDownDetailView(LoginRequiredMixin, ListView):
     template_name = "passdown/passdown_detail_test.html"
     context_object_name = "entries"
