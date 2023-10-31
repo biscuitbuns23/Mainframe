@@ -1,5 +1,5 @@
 <!--
-    THIS TEMPLATE IS FOR THE SEARCH THAT RETURNS THE ENTIRE PASSDOWN CONTAINING THE QUERIED ENTRY
+    THIS TEMPLATE IS FOR THE SEARCH THAT RETURNS ONLY THE INDIVIDUAL ENTRIES THAT MATCH THE QUERY
 -->
 
 
@@ -67,25 +67,19 @@
         <!-- LIST SECTION -->
         <div class="flex flex-col flex-grow p-6 bg-gray-300 overflow-auto">
             <div class="grid grid-cols-3 gap-2">
-                {% for passdown in entries %}
+                {% for entry in entries|dictsort:"modex" %}
+
                 <div class="col-span-3 bg-white text-black text-lg rounded border border-black overflow-auto">
-                    <div class="border-b border-black p-2 font-bold">
-                        {{ passdown.date_time }} {{ passdown.shift }}
-                        <div class="text-sm font-normal">
-                            <p>Notes: {{ passdown.notes }}</p> 
-                            <p>Entered by: {{ passdown.entered_by }}</p>
-                        </div>
-                    </div>
                     <div class="p-4 rounded overflow-auto">
-                        {% for entry in passdown.entry_set.all|dictsort:"modex" %}
                         <div class="mb-3 text-sm">
                             -{{ entry.modex }}: {{ entry.discrepancy|upper }}, JS:{{ entry.job_status }}, CDI:{{ entry.cdi }}
                             <br>   {{ entry.text_body }}
+                            <br>   From passdown on: {{ entry.passdown }}
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
                 {% endfor %}
+
             </div>
 
             <!-- PAGINATIONS CONTROLS INSIDE LIST SECTION-->

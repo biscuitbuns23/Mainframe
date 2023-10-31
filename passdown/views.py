@@ -164,6 +164,8 @@ class MasterListView2(LoginRequiredMixin, ListView):
         queryset = PassDown.objects.all().order_by("-date_time")
         return queryset
     
+
+# This search view returns the entire passdown that contains the queried entry
 class SearchResultsView(LoginRequiredMixin, ListView):
     template_name = 'passdown/search_results.html'
     model = PassDown
@@ -187,6 +189,32 @@ class SearchResultsView(LoginRequiredMixin, ListView):
             Q(entry__discrepancy__icontains=discrepancy)
             )
         return queryset
+
+# This search view returns only the queried entries.    
+class SearchResultsEntryView(LoginRequiredMixin, ListView):
+    template_name = 'passdown/search_results_by_entry.html'
+    model = Entry
+    paginate_by = 10
+    context_object_name = 'entries'
+    form_class = EntryForm
+
+    def get_queryset(self):
+        modex = self.request.GET.get('modex')
+        shift = self.request.GET.get('shift')
+        keyword = self.request.GET.get('keyword')
+        job_status = self.request.GET.get('jobstatus')
+        #cdi = self.request.GET.get('cdi')
+        discrepancy = self.request.GET.get('discrepancy')
+        queryset = Entry.objects.filter(
+            Q(modex__icontains=modex),
+            Q(passdown__shift__icontains=shift),
+            Q(text_body__icontains=keyword),
+            #Q(entry__job_status__icontains=job_status),
+            #Q(entry__cdi__icontains=cdi),
+            Q(discrepancy__icontains=discrepancy)
+            )
+        return queryset
+
 
 class SearchView(LoginRequiredMixin, TemplateView):
     template_name = 'passdown/search.html'
