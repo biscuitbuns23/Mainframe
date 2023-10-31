@@ -196,7 +196,6 @@ class SearchResultsEntryView(LoginRequiredMixin, ListView):
     model = Entry
     paginate_by = 10
     context_object_name = 'entries'
-    form_class = EntryForm
 
     def get_queryset(self):
         modex = self.request.GET.get('modex')
