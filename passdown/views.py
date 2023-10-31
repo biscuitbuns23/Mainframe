@@ -40,25 +40,6 @@ class PassDownCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse("passdown:entry-create")
     
-
-class PassDownDetailView(LoginRequiredMixin, ListView):
-    template_name = "passdown/passdown_detail_test.html"
-    context_object_name = "entries"
-
-    def get_queryset(self):
-        queryset = PassDown.objects.all()
-        return queryset
-    
-    def get_context_data(self, *args, **kwargs):
-        context = super(PassDownDetailView, self).get_context_data(**kwargs)
-        pd = PassDown.objects.get(pk=self.kwargs['pk'])
-        queryset2 = pd.entry_set.all()
-        context.update({
-            "individual_entries": queryset2,
-            "parent_passdown": pd,
-        })
-        return context
-    
 class MasterListView(LoginRequiredMixin, ListView):
     template_name = 'passdown/master_list.html'
     context_object_name = 'entries'
@@ -160,10 +141,6 @@ class SearchResultsEntryView(LoginRequiredMixin, ListView):
 
 class SearchView(LoginRequiredMixin, TemplateView):
     template_name = 'passdown/search.html'
-
-class SearchTestView(LoginRequiredMixin, FormView):
-    template_name = 'passdown/search_test.html'
-    form_class = EntryForm
 
 class AdminDashboardView(AdministratorAndLoginRequiredMixin, ListView):
      template_name = 'passdown/admin_dashboard.html'
