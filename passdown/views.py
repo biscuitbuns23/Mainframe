@@ -51,7 +51,9 @@ class MasterListView2(LoginRequiredMixin, ListView):
 
 
     def get_queryset(self):
-        queryset = PassDown.objects.all().order_by("-date_time")
+        user = self.request.user
+
+        queryset = PassDown.objects.filter(work_center = user.work_center).order_by("-date_time")
         return queryset
     
 
