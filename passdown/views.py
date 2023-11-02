@@ -90,6 +90,8 @@ class SearchResultsEntryView(LoginRequiredMixin, ListView):
     context_object_name = 'entries'
 
     def get_queryset(self):
+        user = self.request.user
+
         modex = self.request.GET.get('modex')
         shift = self.request.GET.get('shift')
         keyword = self.request.GET.get('keyword')
@@ -97,6 +99,7 @@ class SearchResultsEntryView(LoginRequiredMixin, ListView):
         #cdi = self.request.GET.get('cdi')
         discrepancy = self.request.GET.get('discrepancy')
         queryset = Entry.objects.filter(
+            Q(passdown__work_center = user.work_center),
             Q(modex__icontains=modex),
             Q(passdown__shift__icontains=shift),
             Q(text_body__icontains=keyword),
