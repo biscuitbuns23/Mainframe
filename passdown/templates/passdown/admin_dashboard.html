@@ -39,8 +39,9 @@ sm:bg-[center_top_10rem] sm:bg-[length:500px_500px] xs:bg-[center_top_10rem] xs:
       <!-- END LEFT HAND MENU  -->
 
       <!-- CENTER TEXT AREA -->
-      <!-- MEDIUM SCREENS AND UP -->
-      <div class="flex flex-col">
+      <div class="flex flex-col flex-grow">
+
+        <!-- MENU BUTTONS UP TO MEDIUM SCREENS -->
         <div class="flex md:hidden rounded p-1 mx-8">
           <a href="{% url 'passdown:master-list' %}" class="flex items-center bg-gray-200 w-full h-12 px-3 my-2 mr-1 hover:bg-gray-300 rounded hover:text-gray-900" href="#">
             <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,18 +63,41 @@ sm:bg-[center_top_10rem] sm:bg-[length:500px_500px] xs:bg-[center_top_10rem] xs:
             <span class="ml-2 text-sm font-medium">Admin</span>
           </a>
           {% endif %}
-
         </div>
 
-        {% for wc in workcenter %}
-        <div class="flex my-2 rounded p-2 border border-gray-700">
-            <p class="mb-8 leading-relaxed">{{ wc.name }}</p>
-        </div>
-        {% endfor %}
+        <!-- MEDIUM SCREENS AND UP MAIN DISPLAY AREA -->
 
+        <!-- TOP ORG DISPLAY BAR -->
+        <div class="flex items-center justify-center flex-shrink-0 h-16 px-8 bg-white">
+          <h1>{{ request.user.organization }}</h1>
+        </div>
+
+        <!-- MAIN GRAY CANVAS-->
+        <div class="flex flex-col flex-grow bg-white border border-black">
+
+          <!-- TOP BUTTON BAR -->
+          <div class="flex flex-shrink-0 border-b border-black p-1 bg-gray-200">
+            <a class="border border-black py-1 px-2 mx-1 bg-white rounded hover:bg-gray-200">
+              Work Centers
+            </a>
+            <select class="border border-black py-1 px-3 ml-1 bg-white rounded hover:bg-gray-200">
+              <option>Users</option>
+              <option>option 1</option>
+              <option>option 2</option>
+            </select>
           </div>
+
+          <!-- WC DISPLAY LOOP -->
+          {% for wc in workcenter %}
+          <div class="flex rounded border border-gray-700">
+              <p class="leading-relaxed">{{ wc.name }}</p>
+          </div>
+          {% endfor %}
         </div>
+
+
       </div>
+    </div>
 
       <!-- XS SCREENS UP TO MEDIUM -->
 

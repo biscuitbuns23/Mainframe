@@ -34,6 +34,7 @@ class PassDownCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         entered = form.save(commit=False)
         entered.entered_by = self.request.user
+        entered.work_center = self.request.user.work_center
         entered.save()
         return super(PassDownCreateView, self).form_valid(form)
     

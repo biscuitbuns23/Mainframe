@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from UserBase.models import User
+from UserBase.models import User, WorkCenter
 
 class PassDown(models.Model):
     shiftList = [("Days", "Days"),
@@ -12,6 +12,7 @@ class PassDown(models.Model):
     date = models.DateField(default=timezone.now)
     notes = models.TextField(help_text="This section is for general notes. Once submitted, you can create A/C entries on the next page.")
     entered_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    work_center = models.ForeignKey(WorkCenter, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["date_time"]

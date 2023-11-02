@@ -16,5 +16,5 @@ class WorkCenter(models.Model):
 class User(AbstractUser):
     is_administrator = models.BooleanField(default=False)
     organization = models.ForeignKey("Organization", on_delete=models.DO_NOTHING, null=True, blank=True)
-    workcenter = models.ForeignKey("WorkCenter", on_delete=models.DO_NOTHING, null=True, blank=True)
+    work_center = models.ForeignKey("WorkCenter", on_delete=models.DO_NOTHING, null=True, blank=True)
 
