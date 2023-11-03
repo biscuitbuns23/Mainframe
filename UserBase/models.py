@@ -12,7 +12,7 @@ class WorkCenter(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} {self.organization}"
 class User(AbstractUser):
     is_administrator = models.BooleanField(default=False)
     organization = models.ForeignKey("Organization", on_delete=models.DO_NOTHING, null=True, blank=True)
