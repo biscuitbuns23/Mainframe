@@ -2,7 +2,7 @@ from django.urls import path
 from .views import(
     PassDownCreateView, EntryCreateView,
     MasterListView2, SearchView, SearchResultsView, AdminDashboardView,
-    SearchResultsEntryView, NoPermissionView
+    SearchResultsEntryView, NoPermissionView, AdminPassdownListView
     )
 
 app_name = "passdown"
@@ -19,4 +19,5 @@ urlpatterns = [
 
     path('admindashboard', AdminDashboardView.as_view(), name='admin-dashboard'),
     path('notauthorized', NoPermissionView.as_view(), name='not-authorized'),
+    path('<int:pk>/adminpassdown', AdminPassdownListView.as_view(), name='admin-passdown')
 ]
