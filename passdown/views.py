@@ -96,15 +96,15 @@ class SearchResultsEntryView(LoginRequiredMixin, ListView):
         shift = self.request.GET.get('shift')
         keyword = self.request.GET.get('keyword')
         job_status = self.request.GET.get('jobstatus')
-        #cdi = self.request.GET.get('cdi')
+        cdi = self.request.GET.get('cdi')
         discrepancy = self.request.GET.get('discrepancy')
         queryset = Entry.objects.filter(
             Q(passdown__work_center = user.work_center),
             Q(modex__icontains=modex),
             Q(passdown__shift__icontains=shift),
             Q(text_body__icontains=keyword),
-            #Q(entry__job_status__icontains=job_status),
-            #Q(entry__cdi__icontains=cdi),
+            Q(job_status__icontains=job_status),
+            Q(cdi__icontains=cdi),
             Q(discrepancy__icontains=discrepancy)
             )
         return queryset

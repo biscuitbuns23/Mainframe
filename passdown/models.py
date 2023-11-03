@@ -23,12 +23,14 @@ class PassDown(models.Model):
 
 class Entry(models.Model):
     jobStatus = [
+        ("IW", "IW"),
         ("M1", "M1"),
         ("M3", "M3"),
         ("M4", "M4"),
         ("M5", "M5"),
         ("M7", "M7"),
         ("M8", "M8"),
+        ("WP", "WP"),
         ("J/C", "J/C"),
         ("S/O", "S/O"),
     ]
