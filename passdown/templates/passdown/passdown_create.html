@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% load static %}
+
+{% block content %}
+    <div class="flex h-screen text-gray-700">
+        <!-- DROPDOWN BUTTON/ TEXT MENU LIST COLUMN -->
+        <div class="hidden md:flex flex-col border-r border-gray-800">
+    
+            <!-- LEFT COLUMN LOGO -->
+            <button class="relative focus:outline-none group">
+                <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800">
+                    <a class="flex items-center justify-center flex-shrink-0 w-full h-16" href="#">
+                        <img class="w-10 h-10" src="{% static 'passdown/blackiconnobg.png' %}" alt="coloricon">
+                    </a>
+                </div>
+            </button>
+    
+            <!-- TEXT MENU LIST -->
+            <div class="md:flex md:flex-col md:flex-grow md:p-4">
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:master-list' %}">
+                    <span class="leading-none">Pass Down List</span>
+                </a>
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded text-gray-900 bg-gray-300 border border-black" href="{% url 'passdown:passdown-create' %}">
+                    <span class="leading-none">Create Pass Down</span>
+                </a>
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:search' %}">
+                    <span class="leading-none">Search</span>
+                </a>
+                <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:entry-create' %}">
+                    <span class="leading-none">Add entries to existing pass down</span>
+                </a>
+            </div>
+        
+        </div>
+    
+        <!-- LARGE RH COLUMN -->
+        <div class="flex flex-col flex-grow">
+    
+            <!-- TOP ROW: DASHBOARD/MENU BUTTONS -->
+            <div class="flex items-center justify-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
+                <h1 class=" text-lg font-medium">Create Pass Down</h1>
+            </div>
+    
+            <!-- TOP ROW: BUTTONs VISIBLE UP TO MEDIUM SCREEN SIZE, THEN HIDDEN -->
+            <div class="flex flex-wrap md:hidden justify-center border border-b-black">
+                <a href="{% url 'passdown:master-list' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                        Pass Down List
+                    </button>
+                </a>
+                <a href="{% url 'passdown:passdown-create' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 mx-2 rounded text-gray-900 bg-gray-300 border border-black">
+                        Create Pass Down
+                    </button>
+                </a>
+                <a href="{% url 'passdown:search' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                        Search
+                    </button>
+                </a>
+                <a href="{% url 'passdown:entry-create' %}">
+                    <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                        Add entries to existing pass down
+                    </button>
+                </a>
+            </div>
+
+            <!-- LIST SECTION -->
+            <div class="flex flex-col flex-grow p-6 bg-gray-300 overflow-auto">
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="col-span-3 bg-white text-black text-lg rounded border border-black overflow-auto">
+                        <div class="p-4 rounded overflow-auto">
+                            <div class="mb-3 text-sm">
+                                <form class="m-5" method="post">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <button type="submit">Next</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    
+            <!-- END LIST SECTION -->
+            </div>
+    
+    
+        </div>
+        <!-- Component End  -->
+    
+    </div>    
+
+{% endblock content %}

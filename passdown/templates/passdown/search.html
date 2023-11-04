@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="flex h-screen text-gray-700">
+
+    <!-- TEXT MENU LIST COLUMN (HIDDEN UNTIL MEDIUM+ SCREEN SIZE)-->
+    <div class="hidden md:flex flex-col border-r border-gray-800">
+
+        <!-- LEFT COLUMN LOGO -->
+        <button class="relative focus:outline-none group">
+            <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800">
+                <a class="flex items-center justify-center flex-shrink-0 w-full h-16" href="#">
+                    <img class="w-10 h-10" src="{% static 'passdown/blackiconnobg.png' %}" alt="coloricon">
+                </a>
+            </div>
+        </button>
+
+        <!-- TEXT MENU LIST -->
+        <div class="md:flex md:flex-col md:flex-grow md:p-4">
+            <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:master-list' %}">
+                <span class="leading-none">Pass Down List</span>
+            </a>
+            <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900" href="{% url 'passdown:passdown-create' %}">
+                <span class="leading-none">Create Pass Down</span>
+            </a>
+            <a class="flex items-center justify-center mb-4 flex-shrink-0 h-10 md:w-40 px-2 xs:text-xs sm:text-xs md:text-sm font-medium rounded text-gray-900 bg-gray-300 border border-black" href="{% url 'passdown:search' %}">
+                <span class="leading-none">Search</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- LARGE RH COLUMN -->
+    <div class="flex flex-col flex-grow">
+
+        <!-- TOP ROW: DASHBOARD/MENU BUTTONS -->
+        <div class="flex items-center justify-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
+            <h1 class=" text-lg font-medium">Search</h1>
+        </div>
+
+        <!-- TOP ROW: BUTTONs VISIBLE UP TO MEDIUM SCREEN SIZE, THEN HIDDEN -->
+        <div class="flex flex-wrap md:hidden justify-center border border-b-black">
+            <a href="{% url 'passdown:passdown-create' %}">
+                <button class="h-10 text-sm font-medium px-2 my-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                    Pass Down List
+                </button>
+            </a>
+            <a href="{% url 'passdown:passdown-create' %}">
+                <button class="h-10 text-sm font-medium px-2 my-2 mx-2 rounded bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+                    Create Pass Down
+                </button>
+            </a>
+            <a href="{% url 'passdown:search' %}">
+                <button class="h-10 text-sm font-medium px-2 my-2 rounded text-gray-900 bg-gray-300 border border-black">
+                    Search
+                </button>
+            </a>
+        </div>
+
+        <!-- LIST SECTION -->
+        <div class="flex flex-col flex-grow p-6 bg-gray-300 overflow-auto">
+            <div class="grid grid-cols-3 gap-2">
+                <div class="col-span-3 bg-white text-black text-lg rounded border border-black overflow-auto">
+                        <div class="flex flex-col mx-2 h-100 p-4">
+                            <div class="flex flex-wrap">
+                                <h1 class="ml-1">Search</h1>
+                            </div>      
+                            <form class="flex flex-col my-2 w-full" action="{% url 'passdown:search-results-entries' %}" method="get">
+                                <input class="my-1 rounded" name="modex" type="text" placeholder="Modex">
+                                <input class="my-1 rounded" name="shift" type="text" placeholder="Shift">
+                                <input class="my-1 rounded" name="keyword" type="text" placeholder="Text Body (Keyword)">
+                                <input class="my-1 rounded" name="discrepancy" type="text" placeholder="Discrepancy (Keyword)">
+                                <input class="my-1 rounded" name="jobstatus" type="text" placeholder="Job Status">
+                                <input class="my-1 rounded" name="cdi" type="text" placeholder="CDI">
+                                <button class="border border-black bg-gray-200 hover:bg-gray-300 hover:text-gray-900 p-2 my-1 w-20 rounded" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- SEARCH FORM START -->
+
+
+<!--
+    <input name="cdi" type="text" placeholder="CDI">
+    <input name="jobstatus" type="" placeholder="Job Status">
+-->
+{% endblock content %}
