@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from UserBase.views import LandingView
+from UserBase.views import LandingView, ContactView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include('django_browser_reload.urls')),
     path('', LandingView.as_view(), name='landingview'),
+    path('contact', ContactView.as_view(), name='contact'),
     path('user/', include('UserBase.urls', namespace='user')),
     path('passdown/', include('passdown.urls', namespace='passdown')),
     path('', include('django.contrib.auth.urls')),

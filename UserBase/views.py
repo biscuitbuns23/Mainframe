@@ -10,6 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class LandingView(TemplateView):
     template_name = "landing.html"
 
+class ContactView(TemplateView):
+     template_name = "contact.html"
+
 class SignupView(AdministratorAndLoginRequiredMixin, CreateView):
     template_name = "registration/signup.html"
     form_class = CustomUserCreationForm
