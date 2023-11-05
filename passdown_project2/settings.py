@@ -1,6 +1,9 @@
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
 import environ
 import os
+import sys
+import dj_database_url
 
 
 env = environ.Env(
@@ -22,13 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # Raises Django's ImproperlyConfigured
 # exception if SECRET_KEY not in os.environ
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # False if not in os.environ because of casting above
-DEBUG = env('DEBUG')
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 
 # Application definition
@@ -87,17 +92,23 @@ WSGI_APPLICATION = 'passdown_project2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+if DEVELOPMENT_MODE is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME'),
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+            'PORT': env('DB_PORT'),
+                    }
+                }
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv("DATABASE_URL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -133,8 +144,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
