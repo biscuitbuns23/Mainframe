@@ -2,6 +2,7 @@ from pathlib import Path
 import environ
 import os
 
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -27,7 +28,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["mainframe-app-ukitw.ondigitalocean.app"]
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 
 # Application definition
@@ -169,4 +170,3 @@ if not DEBUG:
 	SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 	SECURE_HSTS_PRELOAD = True
 	X_FRAME_OPTIONS = "DENY"
-	ALLOWED_HOSTS = ["mainframe-app-ukitw.ondigitalocean.app"]
