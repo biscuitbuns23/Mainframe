@@ -2,9 +2,6 @@ from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 import environ
 import os
-import sys
-import dj_database_url
-
 
 env = environ.Env(
     # set casting, default value
@@ -32,9 +29,6 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-
 
 # Application definition
 
@@ -93,6 +87,8 @@ WSGI_APPLICATION = 'passdown_project2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+
 if DEVELOPMENT_MODE:
     DATABASES = {
         'default': {
@@ -106,7 +102,14 @@ if DEVELOPMENT_MODE:
                 }
 else:
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+        "default": {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT'),
+        }
     }
 
 # Password validation
@@ -171,8 +174,8 @@ INTERNAL_IPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 CRISPY_TEMPLATE_PACK = 'tailwind'
 
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
-LOGIN_URL = "http://127.0.0.1:8000/user/login"
+LOGIN_REDIRECT_URL = ''
+LOGIN_URL = "/user/login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
