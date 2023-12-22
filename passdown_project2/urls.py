@@ -26,5 +26,6 @@ urlpatterns = [
     path('contact', ContactView.as_view(), name='contact'),
     path('user/', include('UserBase.urls', namespace='user')),
     path('passdown/', include('passdown.urls', namespace='passdown')),
+    path('kairos/', include('kairos.urls', namespace='kairos')),
     path('', include('django.contrib.auth.urls')),
 ]

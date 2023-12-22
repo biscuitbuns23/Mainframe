@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    background-image: url('../img/mountain-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: rgba(0, 0, 0, 0.35);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    padding: 6px 14px;
+    z-index: 9;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active {
+    width: 275px;
+
+}
+
+.sidebar .logo-info {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sidebar .logo-info .icon {
+    font-size: 28px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar .logo-info h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo-info .icon,
+.sidebar.active .logo-info h2 {
+    opacity: 1;
+}
+
+.sidebar .logo-info #menu {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo-info #menu {
+    text-align: right;
+}
+
+.sidebar i {
+    color: #fff;
+    height: 60px;
+    min-width: 50px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+}
+
+.sidebar ul {
+    margin-top: 20px;
+    height: 100%;
+}
+
+.sidebar ul li {
+    position: relative;
+    list-style: none;
+    margin: 8px 0;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.sidebar ul li a:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.sidebar ul li a .title {
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.sidebar.active ul li a .title {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar ul li a i {
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 10px;
+}
+
+.sidebar ul li:last-child {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    padding: 10px 14px;
+    transition: all 0.5s ease;
+}

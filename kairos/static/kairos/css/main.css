@@ -1,0 +1,10 @@
+.main-area {
+    background-color: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    right: 20px;
+    bottom: 0px;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(10px);
+}

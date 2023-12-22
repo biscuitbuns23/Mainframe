@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/kairos/css/landing_style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../static/kairos/css/main.css">
+</head>
+<body>
+    <!-- SIDEBAR MENU -->
+    <div class="sidebar">
+        <div class="logo-info">
+            <!-- <img src="../../static/kairos/img/color-logo.png" class="kairoslogo"> -->
+            <h2>Some Text</h2>
+            <i class="bx bx-menu" id="menu"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-user"></i>
+                    <span class="title">User</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-bell"></i>
+                    <span class="title">Notifications</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-chat"></i>
+                    <span class="title">messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-pie-chart-alt-2"></i>
+                    <span class="title">Analytics</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-wallet"></i>
+                    <span class="title">Wallets</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-cog"></i>
+                    <span class="title">Settings</span>
+                </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li>
+                <a href="#">
+                    <i class="bx bx-log-out"></i>
+                    <span class="title">Logout</span>
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#">
+                    <i class="bx bx-log-in"></i>
+                    <span class="title">Login</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- END SIDEBAR MENU -->
+    <main class="main-area">Main area</main>
+    <script src="../../static/kairos/js/main.js"></script>
+</body>
+</html> 
