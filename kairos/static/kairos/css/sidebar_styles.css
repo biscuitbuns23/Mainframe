@@ -1,20 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Rubik', sans-serif;
-}
-
-body {
-    background-image: url('../img/mountain-background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    position: relative;
-}
-
 .sidebar {
     position: fixed;
     left: 0;

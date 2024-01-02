@@ -5,7 +5,7 @@ from django.views.generic import (
 
 
 class KairosLanding(TemplateView):
-    template_name = 'kairos/kairos_landing2.html'
+    template_name = 'kairos/kairos_landing3.html'
 
 class CreateAccount(TemplateView):
     template_name = 'kairos/create-account.html'
