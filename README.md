@@ -28,7 +28,7 @@ python manage.py makemigrations
 
 python manage.py migrate
 ```
-6. Install node.js and npm
+6. Install node.js version 14 or later, and npm
 
 7. Open two terminal windows inside your project directory. In both enter the following:
 
@@ -44,5 +44,6 @@ python manage.py runserver
 and in terminal 2 type the following:
 
 ```Python
+python manage.py tailwind install
 python manage.py tailwind start
 ```
