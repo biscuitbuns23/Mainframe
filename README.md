@@ -1,6 +1,6 @@
 # Mainframe
 
-Mainframe was created to modernize aviation maintenace project tracking. It aims to do away with the old book-and-pen passdown and the microsoft word passdown.
+Mainframe was created to modernize aviation maintenance project tracking. It aims to do away with the old book-and-pen passdown and the microsoft word passdown.
 It eliminates data loss and cuts down time spent flipping pages. Mainframe can easily be adapted to any organizations' style of collaboration.
 
 Mainframe allows teams to:
